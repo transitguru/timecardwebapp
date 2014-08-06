@@ -1,0 +1,13 @@
+/* TEAM */
+
+  Developer & Project Manager: Michael Sypolt
+  Email: msypolt@transitguru.info
+  Twitter: @TransitGuru
+  GitHub: transitguru
+  Location: Pittsburgh, PA
+
+/* SITE */
+  Doctype: HTML5
+  IDE: Geany
+  OSes: Debian GNU/Linux, Linux Mint, Ubuntu GNU/Linux
+  Software: Inkscape, GIMP, Git
