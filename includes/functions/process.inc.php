@@ -76,6 +76,10 @@ function lwt_process_title($request){
     $output['access'] = TRUE;
     $output['title'] = "TimeCard Webapp";
   }
+  elseif ($request == "/ajax/"){
+    lwt_render_timetracker();
+    exit;
+  }
   elseif ($request == "/login/"){
     if ($_SESSION['authenticated']['user']){
       header("location: /");

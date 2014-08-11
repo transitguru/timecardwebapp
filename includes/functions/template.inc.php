@@ -394,7 +394,9 @@ function lwt_render_home(){
 <?php
   if (isset($_SESSION['authenticated']) && isset($_SESSION['authenticated']['user'])){
 ?>
-            <p>Timecard webapp will go here</p>
+            <div id="timetracker">
+            <?php lwt_render_timetracker(); ?>
+            </div>
 <?php      
   }
   else{
