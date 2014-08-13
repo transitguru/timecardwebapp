@@ -17,7 +17,7 @@ function lwt_render_css(){
   $bg_color = "#222222";
   $content = "#eeeeee";
   $heading = "#003300";
-  $font = "Liberation Sans";
+  $font = "LiberationSans";
   $primary = "#666666";
   $secondary = "#006600";
   $accent = "#aaaa00";
@@ -31,50 +31,50 @@ function lwt_render_css(){
     <style type="text/css">
       /* Importing Fonts for the site */
       @font-face {
-        font-family: "Liberation Sans";
+        font-family: LiberationSans;
         src: url("/fonts/LiberationSans-Regular.ttf");
         font-weight: normal;
         font-style: normal;
       }
       @font-face {
-        font-family: "Liberation Sans";
+        font-family: LiberationSans;
         src: url("/fonts/LiberationSans-Bold.ttf");
         font-weight: bold;
         font-style: normal;
       }
       @font-face {
-        font-family: "Liberation Sans";
+        font-family: LiberationSans;
         src: url("/fonts/LiberationSans-Italic.ttf");
         font-weight: normal;
         font-style: italic
       }
       @font-face {
-        font-family: "Liberation Sans";
+        font-family: LiberationSans;
         src: url("/fonts/LiberationSans-BoldItalic.ttf");
         font-weight: bold;
         font-style: italic
       }
       
       @font-face {
-        font-family: "Liberation Sans Narrow";
+        font-family: LiberationSansNarrow;
         src: url("/fonts/LiberationSansNarrow-Regular.ttf");
         font-weight: normal;
         font-style: normal;
       }
       @font-face {
-        font-family: "Liberation Sans Narrow";
+        font-family: LiberationSansNarrow;
         src: url("/fonts/LiberationSansNarrow-Bold.ttf");
         font-weight: bold;
         font-style: normal;
       }
       @font-face {
-        font-family: "Liberation Sans Narrow";
+        font-family: LiberationSansNarrow;
         src: url("/fonts/LiberationSansNarrow-Italic.ttf");
         font-weight: normal;
         font-style: italic
       }
       @font-face {
-        font-family: "Liberation Sans Narrow";
+        font-family: LiberationSansNarrow;
         src: url("/fonts/LiberationSansNarrow-BoldItalic.ttf");
         font-weight: bold;
         font-style: italic
@@ -82,7 +82,7 @@ function lwt_render_css(){
       
       
       /* Setting up background */
-        body { background-color: <?php echo $body_color;?>; font-family: "<?php echo $font;?>"}
+        body { background-color: <?php echo $body_color;?>; font-family: <?php echo $font;?>}
 
         /* anchor links */
         .page_content a {text-decoration:none; color: <?php echo $a_content;?>; font-weight:bold}
