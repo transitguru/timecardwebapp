@@ -13,8 +13,6 @@
  */
 function lwt_render_timetracker(){
 
-  // Left pane shows task tree
-  lwt_render_tasktree();
   
   //Write timeslot edits
   if (isset($_POST['command']) && $_POST['command'] == 'write_slot'){
@@ -40,18 +38,30 @@ function lwt_render_timetracker(){
       $where = NULL;
     }
     else{
-      $where = $_POST['task']['id'];
+      $where = array('id' => $_POST['task']['id']);
     }
     $inputs['user_id'] = $_SESSION['authenticated']['id'];
     $inputs['parent_id'] = $_POST['task']['parent_id'];
     $inputs['title'] = $_POST['task']['title'];
     $inputs['desc'] = $_POST['task']['desc'];
+    if ($inputs['desc'] == ''){
+      $inputs['desc'] = NULL;
+    }
     $inputs['budget'] = $_POST['task']['budget'];
+    if ($inputs['budget'] == '' || !is_numeric($inputs['budget'])){
+      $inputs['budget'] = NULL;
+    }
     $inputs['progress'] = $_POST['task']['progress'];
+    if ($inputs['progress'] == '' || !is_numeric($inputs['progress'])){
+      $inputs['budget'] = 0;
+    }
     $result = lwt_database_write(DB_NAME, 'tasks', $inputs, $where);
   }
+
+  // show task tree
+  lwt_render_tasktree();
   
-  // Right pane shows tasks on selected task tree
+  // Show tasks on selected task tree
   if (isset($_POST['task_id']) && is_numeric($_POST['task_id'])){
     $big_diff = 0;
     $timeslots = lwt_database_fetch_raw(DB_NAME, "SELECT * from `timeslots` WHERE `task_id` = {$_POST['task_id']} ORDER BY `begin` DESC");
@@ -181,7 +191,7 @@ function lwt_render_timetracker(){
         <input type="hidden" name="command" value="write_task" />
         <input type="hidden" name="task[id]" value="<?php echo $task['id']; ?>" />
         <input type="hidden" name="task[parent_id]" value="<?php echo $task['parent_id']; ?>" />
-        <label for="task[title]">Start</label><input type="text" name="task[title]" value="<?php echo $task['title']; ?>" /><br />
+        <label for="task[title]">Title</label><input type="text" name="task[title]" value="<?php echo $task['title']; ?>" /><br />
         <label for="task[budget]">Budget</label><input type="text" name="task[budget]" value="<?php echo $task['budget']; ?>" /><br />
         <label for="task[progress]">Progress</label><select name="task[progress]">
 <?php
@@ -221,7 +231,7 @@ function lwt_render_tasktree($parent_id = NULL){
 <?php
     foreach ($tasks as $task){
 ?>
-      <li><span class="hand" onclick="ajaxPostLite('task_id=<?php echo $task['id']; ?>', '/ajax/', 'timetracker','');" ondblclick="ajaxPostLite('task_id=<?php echo $task['id']; ?>&command=edit_task', '/ajax/', 'timetracker','');" ><?php echo $task['title']; ?></span>
+      <li>[<a href="javascript:;" onclick="ajaxPostLite('task_id=-1&parent_id=<?php echo $task['id']; ?>&command=edit_task', '/ajax/', 'timetracker', '');" onmousemove="showTooltip(event, 'Add Subtask');" onmouseout="hideTooltip(event);">+</a>] <span class="hand" onclick="ajaxPostLite('task_id=<?php echo $task['id']; ?>', '/ajax/', 'timetracker','');" ondblclick="ajaxPostLite('task_id=<?php echo $task['id']; ?>&command=edit_task', '/ajax/', 'timetracker','');" ><?php echo $task['title']; ?></span>
 <?php lwt_render_tasktree($task['id']); ?>
       </li>
 <?php
