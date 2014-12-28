@@ -15,6 +15,7 @@ Requirements
 Installation
 ============
 This is subject to change as a more automated install process would be provided.
+
 1. Install the prerequisites, make sure you restart Apache after installing the PHP packages
 2. Git clone the repository https://github.com/transitguru/timecardwebapp
 3. Copy the cloned folder to a directory that apache can access, set it as your webroot (plans are in the works to enable use within a pre-existing web root)
